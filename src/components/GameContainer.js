@@ -14,12 +14,14 @@ class GameContainer extends Component {
     }
 
     componentDidMount() {
-        this.setState({ imagesArr: images });
+        this.setState({ imagesArr: this.shuffle() });
     }
 
     handleImageClick = event => {
         let score = this.state.score;
         let highScore = this.state.highScore;
+
+        const shuffledArr = this.shuffle();
 
         // copy the state array in a new array to modify it
         let newStateArray = this.state.clickedArr.slice();
@@ -29,16 +31,37 @@ class GameContainer extends Component {
             this.setState({
                 score: 0,
                 highScore: highScore,
-                clickedArr: []
+                clickedArr: [],
+                imagesArr: shuffledArr
             });
         } else {
             newStateArray.push(imgId);
             this.setState({
                 score: score + 1,
                 highScore: (highScore === score) ? highScore + 1 : highScore,
-                clickedArr: newStateArray
+                clickedArr: newStateArray,
+                imagesArr: shuffledArr
             });
         }
+    }
+
+    shuffle() {
+        const newArr = images.slice();
+
+        var ctr = newArr.length, temp, index;
+
+        // While there are elements in the array
+        while (ctr > 0) {
+            // Pick a random index
+            index = Math.floor(Math.random() * ctr);
+            // Decrease ctr by 1
+            ctr--;
+            // And swap the last element with it
+            temp = newArr[ctr];
+            newArr[ctr] = newArr[index];
+            newArr[index] = temp;
+        }
+        return newArr;
     }
 
     render() {
