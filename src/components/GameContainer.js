@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container } from 'react-bootstrap';
-import ImageList from './ImageList';
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import images from './ImageList';
+import ImageContainer from './ImageContainer';
 //import './App.css';
 
 class GameContainer extends Component {
     state = {
         score: 0,
         highScore: 0,
-        clickedArr: []
+        clickedArr: [],
+        imagesArr: []
+    }
+
+    componentDidMount() {
+        this.setState({ imagesArr: images });
     }
 
     handleImageClick = event => {
         let score = this.state.score;
         let highScore = this.state.highScore;
+
+        // copy the state array in a new array to modify it
         let newStateArray = this.state.clickedArr.slice();
 
         const imgId = event.target.attributes.getNamedItem("data-id").value;
@@ -34,15 +42,27 @@ class GameContainer extends Component {
     }
 
     render() {
-        return (<Container>
-            <div>
-                <h1 className="text-center">Some Text</h1>
-                <h3 className="text-center">
-                    <ImageList handleImageClick={this.handleImageClick} />
-                </h3>
-
-            </div>
-        </Container>);
+        return (
+            <>
+                <Navbar bg="dark" variant="dark">
+                    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="ml-auto">
+                            <Navbar.Text>Score: {this.state.score} | Top Score: {this.state.highScore}</Navbar.Text>
+                        </Nav>
+                    </Navbar.Collapse>
+                </Navbar>
+                <Container>
+                    <div>
+                        <h1 className="text-center">Some Text</h1>
+                        <h3 className="text-center">
+                            <ImageContainer images={this.state.imagesArr} handleImageClick={this.handleImageClick} />
+                        </h3>
+                    </div>
+                </Container>
+            </>
+        );
     }
 }
 
