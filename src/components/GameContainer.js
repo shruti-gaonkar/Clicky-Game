@@ -85,7 +85,7 @@ class GameContainer extends Component {
     render() {
         return (
             <>
-                <Nav isShow={this.state.isShow} won={this.state.won} message={this.state.message} score={this.state.score} highscore={this.state.highScore} />
+                <Nav isShow={this.state.isShow} won={this.state.won} message={this.state.message} score={this.state.score} highScore={this.state.highScore} />
                 <Container className="animatebutton">
                     <div>
                         <h3 className="text-center">

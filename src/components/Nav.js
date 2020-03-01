@@ -16,7 +16,7 @@ function Navi(props) {
             </Navbar.Collapse>
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="ml-auto">
-                    <Navbar.Text>Score: {props.score} | Top Score: {props.highScore}</Navbar.Text>
+                    <Navbar.Text><h3>Score: {props.score} | Top Score: {props.highScore}</h3></Navbar.Text>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
