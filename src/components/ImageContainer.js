@@ -5,7 +5,7 @@ function ImageContainer({ handleImageClick, images }) {
     return (
         <Row>
             {images.map((value, index) => (
-                <Col><img src={value} data-id={index} onClick={handleImageClick} /></Col>
+                <Col><img src={`https://media.giphy.com/media/${value}/giphy.gif`} data-name={value} onClick={handleImageClick} width="200" height="200" /></Col>
             ))}
         </Row >
     );

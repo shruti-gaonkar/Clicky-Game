@@ -10,7 +10,8 @@ class GameContainer extends Component {
         score: 0,
         highScore: 0,
         clickedArr: [],
-        imagesArr: []
+        imagesArr: [],
+        message: "Click an image to begin!"
     }
 
     componentDidMount() {
@@ -26,13 +27,14 @@ class GameContainer extends Component {
         // copy the state array in a new array to modify it
         let newStateArray = this.state.clickedArr.slice();
 
-        const imgId = event.target.attributes.getNamedItem("data-id").value;
+        const imgId = event.target.attributes.getNamedItem("data-name").value;
         if (this.state.clickedArr.includes(imgId)) {
             this.setState({
                 score: 0,
                 highScore: highScore,
                 clickedArr: [],
-                imagesArr: shuffledArr
+                imagesArr: shuffledArr,
+                message: "You guessed incorrectly!"
             });
         } else {
             newStateArray.push(imgId);
@@ -40,7 +42,8 @@ class GameContainer extends Component {
                 score: score + 1,
                 highScore: (highScore === score) ? highScore + 1 : highScore,
                 clickedArr: newStateArray,
-                imagesArr: shuffledArr
+                imagesArr: shuffledArr,
+                message: "You guessed correctly!"
             });
         }
     }
@@ -68,7 +71,7 @@ class GameContainer extends Component {
         return (
             <>
                 <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+                    <Navbar.Brand href="#home">Clicky Game</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
@@ -78,7 +81,7 @@ class GameContainer extends Component {
                 </Navbar>
                 <Container>
                     <div>
-                        <h1 className="text-center">Some Text</h1>
+                        <h1 className="text-center">{this.state.message}</h1>
                         <h3 className="text-center">
                             <ImageContainer images={this.state.imagesArr} handleImageClick={this.handleImageClick} />
                         </h3>

@@ -1,9 +1,16 @@
 const images = [
-    "https://media.giphy.com/media/TXJiSN8vCERuE/giphy.gif",
-    "https://media.giphy.com/media/vcRW4hl1VvyCc/giphy.gif",
-    "https://media.giphy.com/media/WEBiysleGJC6Y/giphy.gif",
-    "https://media.giphy.com/media/Gdyhq5vM5X4ly/giphy.gif",
-    "https://media.giphy.com/media/HuGCwDXj4nQnS/giphy.gif"
+    "Gdyhq5vM5X4ly",
+    "HuGCwDXj4nQnS",
+    "ECtLJKdGj8jfy",
+    "cYVpEseXlkS1q",
+    "xT9DPzhNGA8MKjxwFG",
+    "kiGxsKmkY73ig",
+    "rSPU8hxlwg9WM",
+    "aqFuzQ98vdHLG",
+    "3oriO4kSYahYQr6e1a",
+    "TY8A0XNI9dsK4",
+    "OiKAQbQEQItxK",
+    "wxgimHAKx2xA4"
 ];
 
 export default images;
