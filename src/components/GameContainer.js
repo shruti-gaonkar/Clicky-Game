@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container, Alert } from 'react-bootstrap';
+import { Container, Alert } from 'react-bootstrap';
+import Nav from './Nav';
 import images from './ImageList';
 import ImageContainer from './ImageContainer';
 //import './App.css';
@@ -84,24 +85,7 @@ class GameContainer extends Component {
     render() {
         return (
             <>
-                <Navbar bg="dark" variant="dark">
-                    <Navbar.Brand href="#home">Clicky Game</Navbar.Brand>
-                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Navbar.Text className="ml-auto">
-                            {(this.state.isShow ?
-                                <Alert variant={this.state.isShow} className="text-center">
-                                    {this.state.message}
-                                </Alert>
-                                : <h1 className="text-center">{(this.state.won) ? this.state.message : "Click an image to begin!"}</h1>)}
-                        </Navbar.Text>
-                    </Navbar.Collapse>
-                    <Navbar.Collapse id="basic-navbar-nav">
-                        <Nav className="ml-auto">
-                            <Navbar.Text>Score: {this.state.score} | Top Score: {this.state.highScore}</Navbar.Text>
-                        </Nav>
-                    </Navbar.Collapse>
-                </Navbar>
+                <Nav isShow={this.state.isShow} won={this.state.won} message={this.state.message} score={this.state.score} highscore={this.state.highScore} />
                 <Container className="animatebutton">
                     <div>
                         <h3 className="text-center">
