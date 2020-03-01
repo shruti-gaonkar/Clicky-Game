@@ -1,5 +1,6 @@
 import React from "react";
-import { Navbar, Nav, Alert } from 'react-bootstrap';
+import { Navbar, Nav } from 'react-bootstrap';
+import Alert from "./Alert";
 
 function Navi(props) {
     return (
@@ -9,9 +10,7 @@ function Navi(props) {
             <Navbar.Collapse id="basic-navbar-nav">
                 <Navbar.Text className="ml-auto">
                     {(props.isShow ?
-                        <Alert variant={props.isShow} className="text-center">
-                            {props.message}
-                        </Alert>
+                        <Alert isShow={props.isShow} message={props.message} />
                         : <h1 className="text-center">{(props.won) ? props.message : "Click an image to begin!"}</h1>)}
                 </Navbar.Text>
             </Navbar.Collapse>
