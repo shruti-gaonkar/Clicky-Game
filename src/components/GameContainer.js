@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, Container } from 'react-bootstrap';
+import { Navbar, Nav, Container, Alert } from 'react-bootstrap';
 import images from './ImageList';
 import ImageContainer from './ImageContainer';
 //import './App.css';
@@ -11,7 +11,8 @@ class GameContainer extends Component {
         highScore: 0,
         clickedArr: [],
         imagesArr: [],
-        message: "Click an image to begin!"
+        message: "Click an image to begin!",
+        isShow: false
     }
 
     componentDidMount() {
@@ -34,16 +35,20 @@ class GameContainer extends Component {
                 highScore: highScore,
                 clickedArr: [],
                 imagesArr: shuffledArr,
-                message: "You guessed incorrectly!"
+                message: "You guessed incorrectly!",
+                isShow: "danger"
             });
         } else {
             newStateArray.push(imgId);
+            highScore = (highScore === score) ? highScore + 1 : highScore
+            score = score + 1;
             this.setState({
-                score: score + 1,
-                highScore: (highScore === score) ? highScore + 1 : highScore,
+                score: score,
+                highScore: highScore,
                 clickedArr: newStateArray,
                 imagesArr: shuffledArr,
-                message: "You guessed correctly!"
+                message: "You guessed correctly!",
+                isShow: "success"
             });
         }
     }
@@ -74,6 +79,15 @@ class GameContainer extends Component {
                     <Navbar.Brand href="#home">Clicky Game</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
+                        <Navbar.Text className="ml-auto">
+                            {(this.state.isShow ?
+                                <Alert variant={this.state.isShow} className="text-center">
+                                    {this.state.message}
+                                </Alert>
+                                : <h1 className="text-center">Click an image to begin!</h1>)}
+                        </Navbar.Text>
+                    </Navbar.Collapse>
+                    <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ml-auto">
                             <Navbar.Text>Score: {this.state.score} | Top Score: {this.state.highScore}</Navbar.Text>
                         </Nav>
@@ -81,7 +95,6 @@ class GameContainer extends Component {
                 </Navbar>
                 <Container>
                     <div>
-                        <h1 className="text-center">{this.state.message}</h1>
                         <h3 className="text-center">
                             <ImageContainer images={this.state.imagesArr} handleImageClick={this.handleImageClick} />
                         </h3>
