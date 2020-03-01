@@ -12,7 +12,8 @@ class GameContainer extends Component {
         clickedArr: [],
         imagesArr: [],
         message: "Click an image to begin!",
-        isShow: false
+        isShow: false,
+        won: false
     }
 
     componentDidMount() {
@@ -36,19 +37,21 @@ class GameContainer extends Component {
                 clickedArr: [],
                 imagesArr: shuffledArr,
                 message: "You guessed incorrectly!",
-                isShow: "danger"
+                isShow: "danger",
+                won: false
             });
         } else {
             newStateArray.push(imgId);
-            highScore = (highScore === score) ? highScore + 1 : highScore
+            highScore = (highScore === score) ? highScore + 1 : highScore;
             score = score + 1;
             this.setState({
-                score: score,
+                score: (score === images.length) ? 0 : score,
                 highScore: highScore,
-                clickedArr: newStateArray,
+                clickedArr: (score === images.length) ? [] : newStateArray,
                 imagesArr: shuffledArr,
-                message: "You guessed correctly!",
-                isShow: "success"
+                message: (score === images.length) ? "You won!!" : "You guessed correctly!",
+                isShow: "success",
+                won: (score === images.length) ? true : false
             });
         }
     }
@@ -84,7 +87,7 @@ class GameContainer extends Component {
                                 <Alert variant={this.state.isShow} className="text-center">
                                     {this.state.message}
                                 </Alert>
-                                : <h1 className="text-center">Click an image to begin!</h1>)}
+                                : <h1 className="text-center">{(this.state.won) ? this.state.message : "Click an image to begin!"}</h1>)}
                         </Navbar.Text>
                     </Navbar.Collapse>
                     <Navbar.Collapse id="basic-navbar-nav">
