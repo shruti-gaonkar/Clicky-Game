@@ -1,9 +1,5 @@
 # Clicky Game
 
-### File
-
-* [`Clicky Game`](server.js)
-
 ### Technologies
 Node, React
 
