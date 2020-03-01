@@ -40,6 +40,12 @@ class GameContainer extends Component {
                 isShow: "danger",
                 won: false
             });
+
+            const element = document.querySelector('.animatebutton');
+            element.classList.add('animated', 'shake');
+            setTimeout(function () {
+                element.classList.remove('shake');
+            }, 1000);
         } else {
             newStateArray.push(imgId);
             highScore = (highScore === score) ? highScore + 1 : highScore;
@@ -96,7 +102,7 @@ class GameContainer extends Component {
                         </Nav>
                     </Navbar.Collapse>
                 </Navbar>
-                <Container>
+                <Container className="animatebutton">
                     <div>
                         <h3 className="text-center">
                             <ImageContainer images={this.state.imagesArr} handleImageClick={this.handleImageClick} />
